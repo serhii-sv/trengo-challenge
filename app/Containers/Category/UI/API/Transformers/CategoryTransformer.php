@@ -31,6 +31,7 @@ class CategoryTransformer extends Transformer
         $response = [
             'object' => 'Category',
             'id' => $entity->getHashedKey(),
+            'title' => $entity->title,
             'created_at' => $entity->created_at,
             'updated_at' => $entity->updated_at,
 

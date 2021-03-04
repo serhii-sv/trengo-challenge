@@ -31,6 +31,7 @@ class ViewTransformer extends Transformer
         $response = [
             'object' => 'View',
             'id' => $entity->getHashedKey(),
+            'article_id' => $entity->article_id,
             'created_at' => $entity->created_at,
             'updated_at' => $entity->updated_at,
 

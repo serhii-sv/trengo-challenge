@@ -31,6 +31,8 @@ class VoteTransformer extends Transformer
         $response = [
             'object' => 'Vote',
             'id' => $entity->getHashedKey(),
+            'article_id' => $entity->article_id,
+            'score' => $entity->score,
             'created_at' => $entity->created_at,
             'updated_at' => $entity->updated_at,
 

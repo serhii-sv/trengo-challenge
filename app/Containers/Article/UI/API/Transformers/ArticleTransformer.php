@@ -31,6 +31,8 @@ class ArticleTransformer extends Transformer
         $response = [
             'object' => 'Article',
             'id' => $entity->getHashedKey(),
+            'title' => $entity->title,
+            'body' => $entity->body,
             'created_at' => $entity->created_at,
             'updated_at' => $entity->updated_at,
 

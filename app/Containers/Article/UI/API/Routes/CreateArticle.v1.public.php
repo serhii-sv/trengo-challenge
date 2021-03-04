@@ -10,9 +10,9 @@
  * @apiVersion         1.0.0
  * @apiPermission      none
  *
- * @apiParam           {String}  title Title of article.
- * @apiParam           {String}  body Body content of article.
- * @apiParam           {Json}  categories ["ID1", "ID2"]
+ * @apiParam           {String}  title [required] Title of article.
+ * @apiParam           {String}  body [required] Body content of article.
+ * @apiParam           {Json}  categories [optional] ["ID1", "ID2"]
  *
  * @apiSuccessExample  {json}  Success-Response:
  * HTTP/1.1 200 OK
