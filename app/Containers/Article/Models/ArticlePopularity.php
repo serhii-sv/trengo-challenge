@@ -11,7 +11,7 @@ use App\Ship\Parents\Models\Model;
  * @property integer id
  * @property integer article_id
  * @property integer views_count
- * @property integer popularity
+ * @property float popularity
  * @property string date
  */
 class ArticlePopularity extends Model
@@ -32,7 +32,7 @@ class ArticlePopularity extends Model
   ];
 
   protected $casts = [
-
+    'popularity' => 'popularity',
   ];
 
   protected $dates = [

@@ -16,7 +16,18 @@
  * @apiSuccessExample  {json}  Success-Response:
  * HTTP/1.1 200 OK
 {
-  // Insert the response of the request here...
+"data": {
+    "object": "Vote",
+    "id": "jkxyb6yvrv6en3dv",
+    "article_id": 768,
+    "score": "3",
+    "created_at": "2021-03-04T14:14:30.000000Z",
+    "updated_at": "2021-03-04T14:14:30.000000Z"
+  },
+  "meta": {
+    "include": [],
+    "custom": []
+  }
 }
  */
 

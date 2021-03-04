@@ -16,7 +16,7 @@ class CreateArticlePopularityTable extends Migration
 
         $table->integer('article_id')->unsigned()->index()->nullable();
         $table->bigInteger('views_count')->unsigned()->default(0);
-        $table->integer('popularity')->unsigned()->default(0);
+        $table->float('popularity')->unsigned()->default(0);
 
         $table->date('date');
 

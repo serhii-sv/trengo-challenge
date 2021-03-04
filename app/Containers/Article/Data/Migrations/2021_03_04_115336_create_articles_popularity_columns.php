@@ -13,7 +13,7 @@ class CreateArticlesPopularityColumns extends Migration
     {
       Schema::table('articles', function (Blueprint $table) {
 
-        $table->integer('popularity')->unsigned()->after('body')->default(0);
+        $table->float('popularity')->unsigned()->after('body')->default(0);
         $table->integer('views_total')->unsigned()->after('popularity')->default(0);
 
       });

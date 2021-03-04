@@ -13,6 +13,9 @@ use App\Ship\Parents\Jobs\Job;
  {
      private $articleId;
 
+     /** @var ArticlePopularity */
+     private $todaysPopularityRecord;
+
      public function __construct($articleId)
      {
          $this->articleId = $articleId;
@@ -25,6 +28,7 @@ use App\Ship\Parents\Jobs\Job;
 
        $this->recordDailyViews($article);
        $this->recordTotalViews($article);
+       $this->recordPopularity($article);
      }
 
      /**
@@ -34,16 +38,16 @@ use App\Ship\Parents\Jobs\Job;
      protected function recordDailyViews(Article $article)
      {
        $viewsCountToday = $article->views()
-         ->where('created_at', '>=', now()->startOfDay())
+         ->where('created_at', '>=', now()->startOfDay()->format('Y-m-d'))
          ->count();
 
        /** @var ArticlePopularity $todaysPopularityRecord */
-       $todaysPopularityRecord = ArticlePopularity::where('article_id', $article->id)
+       $this->todaysPopularityRecord = ArticlePopularity::where('article_id', $article->id)
          ->where('date', now()->format('Y-m-d'))
          ->first();
 
-       if (null == $todaysPopularityRecord) {
-         ArticlePopularity::create([
+       if (null == $this->todaysPopularityRecord) {
+         $this->todaysPopularityRecord = ArticlePopularity::create([
            'article_id'   => $article->id,
            'views_count'  => $viewsCountToday,
            'date'         => now()->toDate(),
@@ -52,8 +56,8 @@ use App\Ship\Parents\Jobs\Job;
          return 1;
        }
 
-       $todaysPopularityRecord->views_count = $viewsCountToday;
-       $todaysPopularityRecord->save();
+       $this->todaysPopularityRecord->views_count = $viewsCountToday;
+       $this->todaysPopularityRecord->save();
      }
 
      /**
@@ -65,14 +69,38 @@ use App\Ship\Parents\Jobs\Job;
        $article->save();
      }
 
-     protected function getPopularity($total, $avg)
+     public function recordPopularity(Article $article)
      {
-       // EXAMPLE FOR MYSELF
-       // 35 1-star = 0,135135135135135
-       // 63 2-star = 0,243243243243243
-       // 85 3-star = 0,328185328185328 = leader
-       // 45 4-star = 0,173745173745174
-       // 31 2-star = 0,11969111969112
-       // sum 259
+       $voteToday = [];
+       $sum       = 0;
+
+       for($i=1; $i<=5; $i++) {
+         $voteToday[$i] = $article->votes()
+           ->where('created_at', '>=', now()->startOfDay()->format('Y-m-d'))
+           ->where('score', $i)
+           ->count();
+         $sum += $voteToday[$i];
+       }
+
+       if (0 == $sum) {
+         return;
+       }
+
+       $ranks = [];
+
+       for($i=1; $i<=5; $i++) {
+         $ranks[$i] = $voteToday[$i] / $sum;
+       }
+
+       $currentRank = max($ranks);
+
+       $this->todaysPopularityRecord->popularity = $currentRank;
+       $this->todaysPopularityRecord->save();
+
+       $avgPopularity = $article->articlePopularity()
+         ->avg('popularity');
+
+       $article->popularity = $avgPopularity;
+       $article->save();
      }
  }

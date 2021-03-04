@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\DB;
  * @property integer id
  * @property string title
  * @property string body
- * @property integer popularity
+ * @property float popularity
  * @property integer views_total
  */
 class Article extends Model
@@ -62,7 +62,7 @@ class Article extends Model
     ];
 
     protected $casts = [
-
+      'popularity' => 'float',
     ];
 
     protected $dates = [
