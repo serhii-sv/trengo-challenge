@@ -51,15 +51,17 @@ class GetAllArticlesRequest extends Request
      */
     public function rules()
     {
-        return [
-             'categories' => 'sometimes|json',
-             'datetime_from' => 'sometimes|date_format:Y-m-d H:i:s',
-             'datetime_to' => 'sometimes|date_format:Y-m-d H:i:s',
+      return [
+        'categories' => 'sometimes|json',
+        'datetime_from' => 'sometimes|date_format:Y-m-d H:i:s',
+        'datetime_to' => 'sometimes|date_format:Y-m-d H:i:s',
 
-             'sort_by_views' => 'sometimes|in:0,1',
-             'sort_by_views_order' => 'sometimes|in:asc,desc',
-             'sort_by_views_date' => 'sometimes|date_format:Y-m-d',
-        ];
+        'sort_by_views' => 'sometimes|in:0,1',
+        'sort_order' => 'sometimes|in:asc,desc',
+        'sort_by_views_date' => 'sometimes|date_format:Y-m-d',
+
+        'sort_by_popularity' => 'sometimes|in:0,1',
+      ];
     }
 
     /**

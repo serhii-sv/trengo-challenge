@@ -14,8 +14,9 @@
  * @apiParam           {String} datetime_from [optional] FILTERING by date from  2020-01-01 00:00:01
  * @apiParam           {String} datetime_to [optional] FILTERING by date to  2022-01-01 00:00:01
  * @apiParam           {Integer} sort_by_views [optional] SORTING by views count 0 or 1
- * @apiParam           {Integer} sort_by_views_order [optional] SORTING by views ORDER asc, desc
  * @apiParam           {Integer} sort_by_views_date [optional] SORTING by views specific date. Example 2021-03-05
+ * @apiParam           {Integer} sort_by_popularity [optional] SORTING by popularity (relevant). 1 or 0
+ * @apiParam           {Integer} sort_order [optional] SORTING ORDER asc, desc
  *
  * @apiSuccessExample  {json}  Success-Response:
  * HTTP/1.1 200 OK

@@ -12,19 +12,19 @@ use Prettus\Repository\Contracts\RepositoryInterface as PrettusRepositoryInterfa
 class SortByViewsCriteria extends Criteria
 {
   private $sortByViews;
-  private $sortByViewsOrder;
+  private $sortOrder;
   private $sortByViewsDate;
 
-  public function __construct($sortByViews, $sortByViewsOrder, $sortByViewsDate)
+  public function __construct($sortByViews, $sortOrder, $sortByViewsDate)
   {
     $this->sortByViews        = $sortByViews;
-    $this->sortByViewsOrder   = $sortByViewsOrder;
+    $this->sortOrder   = $sortOrder;
     $this->sortByViewsDate    = $sortByViewsDate;
   }
 
   public function apply($model, PrettusRepositoryInterface $repository)
   {
-    $sortByViewsOrder = $this->sortByViewsOrder;
+    $sortOrder = $this->sortOrder;
     $sortByViewsDate  = $this->sortByViewsDate;
 
 
@@ -33,18 +33,11 @@ class SortByViewsCriteria extends Criteria
     }
 
     if (empty($sortByViewsDate)) {
-      return $model->orderBy('views_total', ($sortByViewsOrder ?? 'asc'));
+      return $model->orderBy('views_total', ($sortOrder ?? 'asc'));
     }
-
-    /*
-     *
-     *  => function ($query) use ($sortByViewsDate, $sortByViewsOrder) {
-      return $query->orderBy('views_count', ($sortByViewsOrder ?? 'asc'));
-    }]
-     */
 
     return $model->join('article_popularity', 'article_popularity.article_id', '=', 'articles.id')
       ->where('article_popularity.date', '=', $sortByViewsDate)
-      ->orderBy('article_popularity.views_count', ($sortByViewsOrder ?? 'asc'));
+      ->orderBy('article_popularity.views_count', ($sortOrder ?? 'asc'));
   }
 }
