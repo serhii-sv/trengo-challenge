@@ -35,7 +35,7 @@ class ArticleTransformer extends Transformer
             'body' => $entity->body,
             'created_at' => $entity->created_at,
             'updated_at' => $entity->updated_at,
-
+            'categories'  => $entity->categories()->get(), // Should be cached at Apiato level
         ];
 
         $response = $this->ifAdmin([

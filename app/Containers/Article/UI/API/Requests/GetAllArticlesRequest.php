@@ -52,8 +52,9 @@ class GetAllArticlesRequest extends Request
     public function rules()
     {
         return [
-            // 'id' => 'required',
-            // '{user-input}' => 'required|max:255',
+             'categories' => 'sometimes|json',
+             'datetime_from' => 'sometimes|date_format:Y-m-d H:i:s',
+             'datetime_to' => 'sometimes|date_format:Y-m-d H:i:s',
         ];
     }
 

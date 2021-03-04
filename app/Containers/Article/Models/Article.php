@@ -6,6 +6,7 @@ use App\Containers\Category\Models\Category;
 use App\Containers\View\Models\View;
 use App\Containers\Vote\Models\Vote;
 use App\Ship\Parents\Models\Model;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class Article
@@ -31,6 +32,11 @@ class Article extends Model
         foreach ($article->views()->get() as $view) {
           $view->delete();
         }
+
+        // delete pivot
+        DB::table('category_articles')
+          ->where('article_id', $article->id)
+          ->delete();
       });
     }
 
