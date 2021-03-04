@@ -7,7 +7,9 @@ use App\Ship\Parents\Models\Model;
 class Vote extends Model
 {
     protected $fillable = [
-
+      'article_id',
+      'score',
+      'ip_address',
     ];
 
     protected $attributes = [

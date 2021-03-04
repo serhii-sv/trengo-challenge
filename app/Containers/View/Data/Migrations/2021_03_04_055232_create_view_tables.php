@@ -11,14 +11,23 @@ class CreateViewTables extends Migration
      */
     public function up()
     {
-        Schema::create('views', function (Blueprint $table) {
+      Schema::create('views', function (Blueprint $table) {
 
-            $table->increments('id');
+        $table->increments('id');
 
-            $table->timestamps();
-            //$table->softDeletes();
+        $table->integer('article_id')->unsigned();
+        $table->string('ip_address');
 
-        });
+        $table->timestamps();
+        //$table->softDeletes();
+
+      });
+
+      Schema::table('views', function (Blueprint $table) {
+
+        $table->foreign('article_id')->references('id')->on('articles');
+
+      });
     }
 
     /**

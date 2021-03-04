@@ -11,14 +11,26 @@ class CreateVoteTables extends Migration
      */
     public function up()
     {
-        Schema::create('votes', function (Blueprint $table) {
+      Schema::create('votes', function (Blueprint $table) {
 
-            $table->increments('id');
+        $table->increments('id');
 
-            $table->timestamps();
-            //$table->softDeletes();
+        $table->integer('article_id')->unsigned();
+        $table->enum('score', [
+          1, 2, 3, 4, 5
+        ]);
+        $table->string('ip_address');
 
-        });
+        $table->timestamps();
+        //$table->softDeletes();
+
+      });
+
+      Schema::table('votes', function (Blueprint $table) {
+
+        $table->foreign('article_id')->references('id')->on('articles');
+
+      });
     }
 
     /**

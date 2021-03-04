@@ -2,12 +2,14 @@
 
 namespace App\Containers\Article\Models;
 
+use App\Containers\Category\Models\Category;
 use App\Ship\Parents\Models\Model;
 
 class Article extends Model
 {
     protected $fillable = [
-
+      'title',
+      'body',
     ];
 
     protected $attributes = [
@@ -19,7 +21,8 @@ class Article extends Model
     ];
 
     protected $casts = [
-
+      'title' => 'string',
+      'body' => 'string',
     ];
 
     protected $dates = [

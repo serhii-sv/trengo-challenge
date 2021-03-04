@@ -7,7 +7,8 @@ use App\Ship\Parents\Models\Model;
 class View extends Model
 {
     protected $fillable = [
-
+      'article_id',
+      'ip_address',
     ];
 
     protected $attributes = [

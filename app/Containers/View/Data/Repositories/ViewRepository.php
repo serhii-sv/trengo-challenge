@@ -15,7 +15,7 @@ class ViewRepository extends Repository
      */
     protected $fieldSearchable = [
         'id' => '=',
-        // ...
+        'article_id' => '=',
     ];
 
 }
