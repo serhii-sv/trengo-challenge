@@ -60,6 +60,8 @@ class LocalizationMiddleware extends Middleware
          *  4) if all fails, give me en
         */
 
+        $request_languages = 'en'; // TODO: rewrited my sam
+
         // split it up by ","
         $languages = explode(',', $request_languages);
 
