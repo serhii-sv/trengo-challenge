@@ -2,6 +2,7 @@
 
 namespace App\Containers\Article\Actions;
 
+use App\Containers\Article\Models\Article;
 use App\Containers\View\Models\View;
 use App\Ship\Parents\Actions\Action;
 use App\Ship\Parents\Requests\Request;
@@ -17,6 +18,8 @@ class FindArticleByIdAction extends Action
           'article_id' => $article->id,
           'ip_address' => $request->ip(),
         ]);
+
+        Article::recalculatePopularity($article->id);
 
         return $article;
     }

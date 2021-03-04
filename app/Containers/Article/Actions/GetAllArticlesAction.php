@@ -15,6 +15,10 @@ class GetAllArticlesAction extends Action
           'categories',
           'datetime_from',
           'datetime_to',
+
+          'sort_by_views',
+          'sort_by_views_order',
+          'sort_by_views_date',
         ]);
 
         if (!empty($data['categories'])) {
@@ -30,6 +34,10 @@ class GetAllArticlesAction extends Action
             ($data['categories'] ?? []),
             ($data['datetime_from'] ?? null),
             ($data['datetime_to'] ?? null),
+
+            ($data['sort_by_views'] ?? 0),
+            ($data['sort_by_views_order'] ?? null),
+            ($data['sort_by_views_date'] ?? null),
           ],
           ['addRequestCriteria']);
 

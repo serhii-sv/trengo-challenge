@@ -2,6 +2,8 @@
 
 namespace App\Containers\View\Tasks;
 
+use App\Containers\Article\Jobs\RecalculatePopularityJob;
+use App\Containers\Article\Models\Article;
 use App\Containers\View\Data\Repositories\ViewRepository;
 use App\Ship\Exceptions\CreateResourceFailedException;
 use App\Ship\Parents\Tasks\Task;
@@ -20,7 +22,9 @@ class CreateViewTask extends Task
     public function run(array $data)
     {
         try {
-            return $this->repository->create($data);
+            $view = $this->repository->create($data);
+
+            return $view;
         }
         catch (Exception $exception) {
             throw new CreateResourceFailedException();

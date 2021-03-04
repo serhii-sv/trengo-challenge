@@ -2,6 +2,8 @@
 
 namespace App\Containers\Vote\Tasks;
 
+use App\Containers\Article\Jobs\RecalculatePopularityJob;
+use App\Containers\Article\Models\Article;
 use App\Containers\Vote\Data\Repositories\VoteRepository;
 use App\Ship\Exceptions\CreateResourceFailedException;
 use App\Ship\Parents\Tasks\Task;
@@ -20,7 +22,11 @@ class CreateVoteTask extends Task
     public function run(array $data)
     {
         try {
-            return $this->repository->create($data);
+            $vote = $this->repository->create($data);
+
+            Article::recalculatePopularity($data['article_id']);
+
+            return $vote;
         }
         catch (Exception $exception) {
             throw new CreateResourceFailedException();

@@ -2,6 +2,7 @@
 
 namespace App\Containers\Article\Models;
 
+use App\Containers\Article\Jobs\RecalculatePopularityJob;
 use App\Containers\Category\Models\Category;
 use App\Containers\View\Models\View;
 use App\Containers\Vote\Models\Vote;
@@ -15,6 +16,8 @@ use Illuminate\Support\Facades\DB;
  * @property integer id
  * @property string title
  * @property string body
+ * @property integer popularity
+ * @property integer views_total
  */
 class Article extends Model
 {
@@ -33,8 +36,11 @@ class Article extends Model
           $view->delete();
         }
 
-        // delete pivot
         DB::table('category_articles')
+          ->where('article_id', $article->id)
+          ->delete();
+
+        DB::table('article_popularity')
           ->where('article_id', $article->id)
           ->delete();
       });
@@ -43,6 +49,8 @@ class Article extends Model
     protected $fillable = [
       'title',
       'body',
+      'popularity',
+      'views_total',
     ];
 
     protected $attributes = [
@@ -54,8 +62,7 @@ class Article extends Model
     ];
 
     protected $casts = [
-      'title' => 'string',
-      'body' => 'string',
+
     ];
 
     protected $dates = [
@@ -90,5 +97,25 @@ class Article extends Model
     public function categories()
     {
       return $this->belongsToMany(Category::class, 'category_articles', 'article_id', 'category_id');
+    }
+
+  /**
+   * @return \Illuminate\Database\Eloquent\Relations\HasMany
+   */
+    public function articlePopularity()
+    {
+      return $this->hasMany(ArticlePopularity::class, 'article_id');
+    }
+
+    /**
+     * @param null $articleId
+     * @throws \Psr\SimpleCache\InvalidArgumentException
+     */
+    public static function recalculatePopularity($articleId=null)
+    {
+      if (!cache()->has($checkKey = 'last_check_popularity.'.$articleId)) {
+        cache()->put($checkKey, true, now()->addMinutes(10));
+        RecalculatePopularityJob::dispatch($articleId);
+      }
     }
 }
