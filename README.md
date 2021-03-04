@@ -24,9 +24,12 @@ How to install:
   - 127.0.0.1  admin.trengo-challenge.test
 
 Links:
-Site: http://trengo-challenge.test:85
-API: http://api.trengo-challenge.test:85
-Admin: http://admin.trengo-challenge.test:85
-phpmyadmin: http://localhost:8082 (server: mysql, user: default, password: secret)
 
-RUN unit tests command: vendor/bin/phpunit
+- Site: http://trengo-challenge.test:85
+- API documentation (PUBLIC): http://trengo-challenge.test:85/api/documentation/
+- Admin: http://admin.trengo-challenge.test:85
+- phpmyadmin: http://localhost:8082 (server: mysql, user: default, password: secret)
+
+Tests:
+
+- RUN unit tests command: vendor/bin/phpunit
