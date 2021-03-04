@@ -11,7 +11,8 @@ class CreateArticleAction extends Action
     public function run(Request $request)
     {
         $data = $request->sanitizeInput([
-            // add your request data here
+            'title',
+            'body',
         ]);
 
         $article = Apiato::call('Article@CreateArticleTask', [$data]);
