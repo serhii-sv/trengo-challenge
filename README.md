@@ -5,7 +5,7 @@ How to install:
 - git clone https://github.com/serhii-sv/trengo-challenge
 - cd trengo-challenge
 - If you would like to use Docker (installing may take some while, first time installing 30-60 min depends on your perfomance):
-  - ! PORTS ARE CHANGES TO SPECIFIC, 80->81, 3306->3307 etc.. to do not use exists ports.
+  - ! PORTS ARE CHANGES TO SPECIFIC, 80->85, 3306->3307 etc.. to do not use exists ports.
   - git submodule add https://github.com/Laradock/laradock.git
   - cd laradock
   - cp .env.example .env
