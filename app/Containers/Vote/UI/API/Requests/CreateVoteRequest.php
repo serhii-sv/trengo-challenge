@@ -33,7 +33,7 @@ class CreateVoteRequest extends Request
      * @var  array
      */
     protected $decode = [
-        // 'id',
+         'article_id',
     ];
 
     /**
@@ -52,7 +52,8 @@ class CreateVoteRequest extends Request
     public function rules()
     {
         return [
-            // 'id' => 'required',
+             'article_id' => 'required|exists:articles,id',
+             'score' => 'required|in:1,2,3,4,5',
             // '{user-input}' => 'required|max:255',
         ];
     }

@@ -11,8 +11,11 @@ class CreateVoteAction extends Action
     public function run(Request $request)
     {
         $data = $request->sanitizeInput([
-            // add your request data here
+            'article_id',
+            'score',
         ]);
+
+        $data['ip_address'] = $request->ip();
 
         $vote = Apiato::call('Vote@CreateVoteTask', [$data]);
 
