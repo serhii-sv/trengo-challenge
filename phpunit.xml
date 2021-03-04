@@ -11,9 +11,18 @@
          processIsolation="false"
          stopOnFailure="false">
     <testsuites>
-        <testsuite name="Containers Tests">
-            <directory suffix="Test.php">./app/Containers</directory>
-        </testsuite>
+      <testsuite name="Article Tests">
+        <directory suffix="">./app/Containers/Article/Tests</directory>
+      </testsuite>
+      <testsuite name="Category Tests">
+        <directory suffix="">./app/Containers/Category/Tests</directory>
+      </testsuite>
+      <testsuite name="View Tests">
+        <directory suffix="">./app/Containers/View/Tests</directory>
+      </testsuite>
+      <testsuite name="Vote Tests">
+        <directory suffix="">./app/Containers/Vote/Tests</directory>
+      </testsuite>
     </testsuites>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
