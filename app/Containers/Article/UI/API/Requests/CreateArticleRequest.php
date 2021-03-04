@@ -52,8 +52,9 @@ class CreateArticleRequest extends Request
     public function rules()
     {
         return [
-             'title'  => 'required|string|min:3|max:100',
-             'body'   => 'required|string|min:10',
+          'title'  => 'required|string|min:3|max:100',
+          'body'   => 'required|string|min:10',
+          'categories' => 'sometimes|json',
         ];
     }
 

@@ -12,6 +12,7 @@
  *
  * @apiParam           {String}  title Title of article.
  * @apiParam           {String}  body Body content of article.
+ * @apiParam           {Json}  categories ["ID1", "ID2"]
  *
  * @apiSuccessExample  {json}  Success-Response:
  * HTTP/1.1 200 OK

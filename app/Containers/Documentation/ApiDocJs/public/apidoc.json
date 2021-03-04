@@ -1,7 +1,7 @@
 {
-  "name": "apiato",
-  "description": "apiato (Public API) Documentation",
-  "title": "Welcome to apiato",
+  "name": "Trengo Challenge",
+  "description": "Trengo-Challenge (Public API) Documentation",
+  "title": "Welcome to Trengo-Challenge",
   "version": "1.0.0",
   "url" : "http://api.trengo-challenge.test",
   "template": {

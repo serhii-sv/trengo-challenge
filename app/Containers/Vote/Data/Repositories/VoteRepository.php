@@ -16,7 +16,7 @@ class VoteRepository extends Repository
     protected $fieldSearchable = [
         'id' => '=',
         'article_id' => '=',
-        'ip_address' => '%like%',
+        'ip_address' => 'like',
         'score' => '=',
     ];
 
