@@ -15,7 +15,8 @@ How to install:
 - cp .env.example .env
 - php artisan key:generate
 - php artisan migrate
-- php artisan db:seed
+- php artisan db:seed (can take some while, != production has demo data)
+  php artisan db:seed --class="App\Containers\Article\Data\Seeders\ArticleCategorySeeder2"
 - npm install apidoc
 - php artisan apiato:apidoc
 - Put these records to /etc/hosts:
@@ -33,3 +34,10 @@ Links:
 Tests:
 
 - RUN unit tests command: vendor/bin/phpunit
+
+Main containers:
+
+- Category
+- Article
+- Vote
+- View
