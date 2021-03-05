@@ -8,7 +8,7 @@ How to install:
   - ! PORTS ARE CHANGES TO SPECIFIC, 80->85, 3306->3307 etc.. to do not use exists ports.
   - git submodule add https://github.com/Laradock/laradock.git
   - cd laradock
-  - cp .env.example .env
+  - cp ../laradock-env-example .env
   - docker-compose up -d nginx mysql php-fpm phpmyadmin workspace redis
   - docker-compose exec workspace bash
 - composer install
