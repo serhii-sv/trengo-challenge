@@ -6,8 +6,8 @@ How to install:
 - cd trengo-challenge
 - If you would like to use Docker (installing may take some while, first time installing 30-60 min depends on your perfomance):
   - ! PORTS ARE CHANGES TO SPECIFIC, 80->85, 3306->3307 etc.. to do not use exists ports.
-  - git submodule add https://github.com/Laradock/laradock.git
-  - cd laradock
+  - git submodule add https://github.com/Laradock/laradock.git laradock-trengo
+  - cd laradock-trengo
   - cp ../laradock-env-example .env
   - docker-compose up -d nginx mysql php-fpm phpmyadmin workspace redis
   - docker-compose exec workspace bash
